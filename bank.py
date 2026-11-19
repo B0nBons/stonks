@@ -1,4 +1,8 @@
-# wohoo we got this
+# we dont got this
+# currently gonna make everything print instead of returning vals
+# bc not using pygame now
+# ong bro, 14 hours left, and out of them, 8 are for rent and 6 are for eggplants
+# therefore, i should do 4 hours today, 
 
 class Bank():
     def __init__(self):
@@ -18,21 +22,23 @@ class Bank():
     def deposit(self, amount_money, account_name): # I LITERALLY FORGOT WHAT IT WAS CALLED WHEN YOU PUT IN MONEY
         if amount_money > 0:
             self.accounts[account_name]["money"] += amount_money
-            return True
-            # i think we dont use print statements since we want this to be in pygame???????? idk
-        return False # if you deposit -2178 or wtv the overflow is, dont give infinite money
+            print(f"You deposited {money} in your {account_name} account.")
+            # i think we dont use print statements since we want this to be in pygame???????? idk NO, WE HATE PYGAME, FAH
+        print("You aren't able to deposit negative money.")
 
     def withdraw(self, amount_money, account_name):
         if amount_money > self.accounts[account_name]["money"]:
-            return False # you dont even have enough money lol
+            print(f"You do not have enough money in {account_name} to withdraw {amount_money} dollars.") # you dont even have enough money lol
         if amount_money <= 0:
-            return False
+            print("You can't withdraw negative money.")
         self.accounts[account_name]["money"] -= amount_money
-        return True
+        self.accounts["Checking"]["money"] += amount_money
+        print(f"You withdrew {amount_money} dollars. It is now in your checking account.")
+        # i just realised that this money kinda just disappears, so its just going to the checking
     
     def check_balance(self, account_name):
         if account_name in self.accounts:
-            return self.accounts[account_name]['money']
+            print(self.accounts[account_name]['money'])
 
     # func for interest since i want specific events to trigger interest (end of day, major news, new acc waiting period)
     def add_interest(self): # this is not very INTERESTing haha that was so bad

@@ -11,7 +11,7 @@ class StockMarket():
             "POM" : { # to my sister, who made me buy the eggplants, and is addicted to pomegranate (she wont read this prolly) (she read it after locking me out of my)
                 "name" : "Pomegranate Manguese Corporation",
                 "median_cost" : 10.00,
-                "volatility" : 1.50,
+                "volatility" : 0.35,
                 "shares_purchased" : 0,
                 "historical_prices" : [10.00]
             }, # people hate pomegranate revolution or som
@@ -19,15 +19,15 @@ class StockMarket():
             "MOW" : {
                 "name" : "Meowhiffic Grocers",
                 "median_cost" : 15.00,
-                "volatility" : 1.75
+                "volatility" : .25,
                 "shares_purchased" : 0,
-                "Historical_prices" : [15.00]
+                "historical_prices" : [15.00]
             }, # insane scandal where the chefs are rats
 
             "BAW" : {
                 "name" : "Bawling Companee", # french e at the end for francy (HAHA INSANE PUN)
                 "median_cost" : 400.00,
-                "volatility" : 5.50,
+                "volatility" : .15,
                 "shares_purchased" : 0,
                 "historical_prices" : [400.00] # idk ab scandal
             },
@@ -35,19 +35,65 @@ class StockMarket():
             "AVO" : {
                 "name" : "Avo-onics Softwhere",
                 "median_cost" : 5000.00,
-                "volatility" : 1.5,
+                "volatility" : .20,
                 "shares_purchased" : 0,
                 "historical_prices" : [5000.00]
             } # super chill, until news event of child labor or som
         }
-    def tick_prices(self):
-        pass
 
-    def buy_stock(self):
-        pass
+        self.headlines = {
+            "POM" : [
+                ["JUST IN: Pomegranate Revolution breaks out within the nation. POM drops 35%.", 0.65]
+                    ],
+            "MOW" : [
+                ["BREAKING: Meowhiffic internal report reveals the chefs are rats. MOW crashes 40%.", 0.60]
+                    ],
+            "BAW" : [
+                ["EXCLUSIVE: Bawling Companee revealed MASSIVE quarterly growths! BAW up 75%.", 1.75]
+            ],
+            "AVO" : [
+                ["MAJOR SCANDAL: Avo-onics Softwhere engineers photographed coding in LIGHT MODE. AVO drops 65%.", 0.35]
+            ]
+        }
+
+    def tick_prices(self):
+        # going by minecraft system, where a tick occurs every X amount of seconds
+        for tickname in self.stocks: # insane throwback to items.items
+            stock = self.stocks[tickname]
+            LIMIT = int(stock['volatility'] * 100) # this will be a PERCENT, also insane verity
+            change_boundaries = random.randint(-LIMIT, LIMIT) / 100 # to get back to percent
+            # comment bc i found this weird to code
+            # we first get LIMIT to be an INTEGER percent (30percent) ex
+            # then we choose a random integer between (-30, 30) to decide if it goes UP or DOWN, divide by 100 to get the DECIMAL to mult
+            current_price = self.stocks[tickname]['historical_prices'][-1] # insane rare negative index referenced
+            new_price = current_price * (1 + change_boundaries)
+            if new_price <= 0:
+                new_price = 1
+            stock['historical_prices'].append(new_price)
+
+    def buy_stock(self, tickname, amount, bank): # either amount will be for buying in bulk, or it can just be buying one at a time to promote spam clicking
+        # use investment acc, checking is gonna be for gambling and expenses, saving might just be non existent or to achievements
+        if tickname in self.stocks and amount >= 1:
+            current_price = self.stocks[tickname]['historical_prices'][-1] # ts hurts my hqnds
+            cost = amount * current_price
+            if bank.withdraw(cost, "Investment") == True:
+                self.stocks[tickname]["shares_purchased"] += amount
+                return True
+
+        return False # cant buy an invisible ticker
     
-    def sell_stock(self): # forgot word for sell, was gonna put "steal" or "stop" or "relinquish", ts bad
-        pass
+    def sell_stock(self, tickname, amount, bank): # forgot word for sell, was gonna put "steal" or "stop" or "relinquish", ts bad
+        if tickname in self.stocks and amount >= 1:
+            if self.stocks[tickname]['shares_purchased'] >= amount:
+                earnings = self.stocks[tickname]['historical_prices'][-1] * amount
+                self.stocks[tickname]['shares_purchased'] -= amount
+                bank.deposit(earnings, "Investment")
+                return True
+        return False
 
     def news_event(self):
-        pass
+        tickers = ["POM", "MOW", "BAW", "AVO"]
+        tickname = tickers[random.randint(0, (len(tickers) - 1))]
+        events = self.headlines[tickname]
+        chosen = events[random.randint(0, (len(events) - 1))]
+        return chosen # idk if we return or not

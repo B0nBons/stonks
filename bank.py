@@ -25,6 +25,8 @@ class Bank():
     def withdraw(self, amount_money, account_name):
         if amount_money > self.accounts[account_name]["money"]:
             return False # you dont even have enough money lol
+        if amount_money <= 0:
+            return False
         self.accounts[account_name]["money"] -= amount_money
         return True
     

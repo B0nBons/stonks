@@ -19,4 +19,15 @@ while True:
             stock = stonk.stocks[ticker]
             print(ticker, stock['name'])
             print(stock['historical_prices'][-1])
-        
+    elif choice == 3:
+        # chat im cooked
+        # i had to skip school bc i got a fever
+        # its the last day before thanksgiving break
+        # and i have a french quiz, math TEST, and politics paper
+        # js put the fries in the bag
+        # this is gonna just be a block that NEEDS to be run whenever buying stocks
+        for ticker in stonk.stocks:
+            print(ticker + ", ", end="") # i dont like how the last ticker also has a commo, but this is probably just something that must be dealt with
+        print("\n")
+        purchase = input("Which stock would you like to buy? ").strip().upper()
+        stonk.buy_stock(purchase, 2, bank)

@@ -35,14 +35,22 @@ class Bank():
 
 # after that bug, im now going through EVERYTHING bc im a dumbahs
 
+    # NOTE NOTE NOTE REDO THIS ENTIRE FUNC IT LOWKEY SUCSK
     def withdraw(self, amount_money, account_name):
         if account_name in self.accounts: # im adding this because theres a decent chance im gonna have the user type it in rather than just typing a number or something
             if amount_money > self.accounts[account_name]["money"]:
                 print(f"You do not have enough money in {account_name} to withdraw {amount_money} dollars.") # you dont even have enough money lol
+                # for account in self.accounts:
+                #     if account['money'] >= amount_money:
+                #         print(f"The {account} account has {account['money']} dollars, which is enough for your transaction of {amount_money}")
+                return False
+
             if amount_money <= 0:
                 print("You can't withdraw negative money.")
+                return False
+            
             self.accounts[account_name]["money"] -= amount_money
-            self.accounts["Checking"]["money"] += amount_money
+            self.accounts["Checking"]["money"] += amount_money # OMFG WhAT IF WE WITHDRAW FROM OUR CHECKING ACCOUNT
             print(f"You withdrew {amount_money} dollars. It is now in your checking account.")
             return True
         else:
@@ -57,7 +65,7 @@ class Bank():
     
     def check_balance(self, account_name):
         if account_name in self.accounts:
-            print(self.accounts[account_name]['money'])
+            print(f"You have {self.accounts[account_name]['money']} dollars in your {account_name}")
 
     # func for interest since i want specific events to trigger interest (end of day, major news, new acc waiting period)
     def add_interest(self): # this is not very INTERESTing haha that was so bad

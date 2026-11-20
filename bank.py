@@ -40,9 +40,11 @@ class Bank():
         if account_name in self.accounts: # im adding this because theres a decent chance im gonna have the user type it in rather than just typing a number or something
             if amount_money > self.accounts[account_name]["money"]:
                 print(f"You do not have enough money in {account_name} to withdraw {amount_money} dollars.") # you dont even have enough money lol
-                # for account in self.accounts:
-                #     if account['money'] >= amount_money:
-                #         print(f"The {account} account has {account['money']} dollars, which is enough for your transaction of {amount_money}")
+                for account in self.accounts:
+                    print(account)
+                    if self.accounts[account]['money'] >= amount_money:
+                        print(f"The {account} account has {self.accounts[account]['money']} dollars, which is enough for your transaction of {amount_money}")
+                        print("Try withdrawing some money from that account, and depositing it into your INVESTMENT account.")
                 return False
 
             if amount_money <= 0:

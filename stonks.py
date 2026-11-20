@@ -81,8 +81,8 @@ class StockMarket():
                 self.stocks[tickname]["shares_purchased"] += amount
                 print(f"You purchased {amount} {tickname} for {cost}!")
                 return True
-
-        print(f"You cannot buy {tickname}, as it doesn't exist.") # changed this message bc it is NOT descriptive
+        if tickname not in self.stocks:
+            print(f"You cannot buy {tickname}, as it doesn't exist.") # changed this message bc it is NOT descriptive
     
     def sell_stock(self, tickname, amount, bank): # forgot word for sell, was gonna put "steal" or "stop" or "relinquish", ts bad
         if tickname in self.stocks and amount >= 1:

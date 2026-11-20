@@ -2,6 +2,7 @@ import random
 from bank import Bank
 # ok so i literally forgot to read filenames, so main now has all the main
 # and stonks has the STONKS (dead meme im so sorry)
+# NOTE: CAN SPEND 5.5 HOURS ON ART
 
 class StockMarket():
     def __init__(self):
@@ -78,9 +79,9 @@ class StockMarket():
             cost = amount * current_price
             if bank.withdraw(cost, "Investment") == True:
                 self.stocks[tickname]["shares_purchased"] += amount
-                return True
+                print(f"You purchased {amount} {tickname} for {cost}!")
 
-        return False # cant buy an invisible ticker
+        print(f"You cannot buy {tickname}.") # cant buy an invisible ticker
     
     def sell_stock(self, tickname, amount, bank): # forgot word for sell, was gonna put "steal" or "stop" or "relinquish", ts bad
         if tickname in self.stocks and amount >= 1:
@@ -88,7 +89,7 @@ class StockMarket():
                 earnings = self.stocks[tickname]['historical_prices'][-1] * amount
                 self.stocks[tickname]['shares_purchased'] -= amount
                 bank.deposit(earnings, "Investment")
-                return True
+                print(f"You sold {amount} {tickname}, for a total of {earnings}!")
         return False
 
     def news_event(self):

@@ -70,6 +70,7 @@ class StockMarket():
             new_price = current_price * (1 + change_boundaries)
             if new_price <= 0:
                 new_price = 1
+                new_price = f"{new_price:.2f}"
             self.stocks[tickname]['historical_prices'].append(new_price)
             self.stocks[tickname]['current_cost'] = new_price
 
@@ -80,6 +81,7 @@ class StockMarket():
         if tickname in self.stocks and amount >= 1:
             current_price = self.stocks[tickname]['historical_prices'][-1] # ts hurts my hqnds
             cost = amount * current_price
+            cost = f"{cost:.2f}"
             if bank.withdraw(cost, "Investment") == True:
                 self.stocks[tickname]["shares_purchased"] += amount
                 print(f"You purchased {amount} {tickname} for {cost}!")

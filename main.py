@@ -8,7 +8,7 @@ bank = Bank()
 stonk = StockMarket()
 
 while True:
-    choice = int(input("1 to check balance, 2 to view stocks, 3 to buy stocks, 4 to sell stocks, 5 to progress time, and 6 to quit "))
+    choice = int(input("1 to check balance, 2 to view stocks, 3 to buy stocks, 4 to sell stocks, 5 progress time, and 6 to quit "))
     if choice == 1:
         bank.check_balance("Investment")
         bank.check_balance("Savings")
@@ -33,7 +33,12 @@ while True:
         amount_purchase = int(input(f"And how many shares of {purchase} are you purchasing? (1, 2, 3, etc) "))
         stonk.buy_stock(purchase, amount_purchase, bank)
 
-    elif choice == 4:
+    elif choice == 5:
         stonk.tick_prices()
-        # guys price ticks dont work 
-        # im gon cry
+        print("THE PRICES ARE CHANGING")
+        for ticker in stonk.stocks:
+            print(ticker, f"{stonk.stocks[ticker]['current_cost']:.2f}")
+    # guys i just realised why it wasnt working
+    # i feel so dumb
+    # i made the choice 5 and then kept typing in 5 and being mad why it wasnt working when it was literally me
+    # this is VERY embarassing

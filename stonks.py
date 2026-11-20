@@ -11,7 +11,7 @@ class StockMarket():
         self.stocks = {
             "POM" : { # to my sister, who made me buy the eggplants, and is addicted to pomegranate (she wont read this prolly) (she read it after locking me out of my)
                 "name" : "Pomegranate Manguese Corporation",
-                "median_cost" : 10.00,
+                "current_cost" : 10.00,
                 "volatility" : 0.35,
                 "shares_purchased" : 0,
                 "historical_prices" : [10.00]
@@ -19,7 +19,7 @@ class StockMarket():
             
             "MOW" : {
                 "name" : "Meowhiffic Grocers",
-                "median_cost" : 15.00,
+                "current_cost" : 15.00,
                 "volatility" : .25,
                 "shares_purchased" : 0,
                 "historical_prices" : [15.00]
@@ -27,7 +27,7 @@ class StockMarket():
 
             "BAW" : {
                 "name" : "Bawling Companee", # french e at the end for francy (HAHA INSANE PUN)
-                "median_cost" : 400.00,
+                "current_cost" : 400.00,
                 "volatility" : .15,
                 "shares_purchased" : 0,
                 "historical_prices" : [400.00] # idk ab scandal
@@ -35,7 +35,7 @@ class StockMarket():
 
             "AVO" : {
                 "name" : "Avo-onics Softwhere",
-                "median_cost" : 5000.00,
+                "current_cost" : 5000.00,
                 "volatility" : .20,
                 "shares_purchased" : 0,
                 "historical_prices" : [5000.00]
@@ -58,11 +58,11 @@ class StockMarket():
         }
 
     def tick_prices(self):
-        # going by minecraft system, where a tick occurs every X amount of seconds
+        # manually ticking prices is NOT fun, but well see how it works
         for tickname in self.stocks: # insane throwback to items.items
             stock = self.stocks[tickname]
             LIMIT = int(stock['volatility'] * 100) # this will be a PERCENT, also insane verity
-            change_boundaries = random.randint(-LIMIT, LIMIT) / 100 # to get back to percent
+            change_boundaries = (random.randint(-LIMIT, LIMIT) / 100) # to get back to percent
             # comment bc i found this weird to code
             # we first get LIMIT to be an INTEGER percent (30percent) ex
             # then we choose a random integer between (-30, 30) to decide if it goes UP or DOWN, divide by 100 to get the DECIMAL to mult
@@ -70,7 +70,10 @@ class StockMarket():
             new_price = current_price * (1 + change_boundaries)
             if new_price <= 0:
                 new_price = 1
-            stock['historical_prices'].append(new_price)
+            self.stocks[tickname]['historical_prices'].append(new_price)
+            self.stocks[tickname]['current_cost'] = new_price
+
+            # i feel like im insane, this should be working???
 
     def buy_stock(self, tickname, amount, bank): # either amount will be for buying in bulk, or it can just be buying one at a time to promote spam clicking
         # use investment acc, checking is gonna be for gambling and expenses, saving might just be non existent or to achievements

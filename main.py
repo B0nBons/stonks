@@ -8,7 +8,7 @@ bank = Bank()
 stonk = StockMarket()
 
 while True:
-    choice = int(input("1 to check balance, 2 to view stocks, 3 to buy stocks, 4 to sell stocks, 5 to quit "))
+    choice = int(input("1 to check balance, 2 to view stocks, 3 to buy stocks, 4 to sell stocks, 5 to progress time, and 6 to quit "))
     if choice == 1:
         bank.check_balance("Investment")
         bank.check_balance("Savings")
@@ -32,3 +32,8 @@ while True:
         purchase = input("Which stock would you like to buy? ").strip().upper()
         amount_purchase = int(input(f"And how many shares of {purchase} are you purchasing? (1, 2, 3, etc) "))
         stonk.buy_stock(purchase, amount_purchase, bank)
+
+    elif choice == 4:
+        stonk.tick_prices()
+        # guys price ticks dont work 
+        # im gon cry

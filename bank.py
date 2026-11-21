@@ -51,8 +51,9 @@ class Bank():
                 return False
             
             self.accounts[account_name]["money"] -= amount_money
-            self.accounts["Checking"]["money"] += amount_money # OMFG WhAT IF WE WITHDRAW FROM OUR CHECKING ACCOUNT
-            print(f"You withdrew {amount_money} dollars. It is now in your checking account.")
+            # self.accounts["Checking"]["money"] += amount_money # guys i found the bug, im jus a chud
+            # print(f"You withdrew {amount_money} dollars. It is now in your checking account.")
+            # ok why would i even add this lmao
             return True
         else:
             print("That account isn't real.")

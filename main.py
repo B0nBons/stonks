@@ -19,7 +19,7 @@ while True:
 |   5    | Take a break (forward time)                |
 |   6    | Visit the local, RNG probability location  |
 - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        """))
+> I want option number... """))
         if choice == 1:
             time.sleep(0.1)
             print(f"Your investment account has {bank.check_balance("Investment")} dollars!")
@@ -69,3 +69,8 @@ while True:
 # NOTE NOTE NOTE NOTE
 # THERE IS A BIG BIG BUG 
 # WHEN BUY/SELL STOCKS, MONEY IS DUPLICATED
+# ok goodnight vscode, see you in like 6 hours lol
+# good morning vscode, we are so back
+# main goal of todays coding sesh is to figure out all these sstupid banking errors
+# OK THE BUG BUG BUG IS THAT BUYING STOCKS JUST MOVES MONEY FROM INVESTMENT TO CHECKING
+# it does seem everything else works normally

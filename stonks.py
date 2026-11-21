@@ -109,9 +109,17 @@ class StockMarket():
             if self.stocks[tickname]['shares_purchased'] >= amount:
                 earnings = self.stocks[tickname]['historical_prices'][-1] * amount
                 self.stocks[tickname]['shares_purchased'] -= amount
+                earnings = float(f"{earnings:.2f}")
                 bank.deposit(earnings, "Investment")
                 print(f"You sold {amount} {tickname}, for a total of {earnings}!")
-        return False
+            else:
+                print("You don't have enough shares to sell that many!")
+        elif tickname not in self.stocks:
+            print(f"{tickname} doesn't appear to be a stock.")
+        elif amount <= 0:
+            print("You can't sell that many shares.")
+        # yeah so sadly it doesnt work, ima chud
+        # anyway just checked but we are 2/3 of the way done (timewise, feature wise probably like 1 percent lmao)
 
     def news_event(self):
         tickers = ["POM", "MOW", "BAW", "AVO"]

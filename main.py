@@ -32,7 +32,7 @@ while True:
             for ticker in stonk.stocks:
                 stock = stonk.stocks[ticker]
                 print(ticker, stock['name'])
-                print(stock['current_cost'])
+                print(f"{stock['current_cost']:.2f}")
             print("\n- - - - - - - - - - - - - - - - - - -")
 
             garb = input("Press ENTER when ready to continue...")
@@ -48,6 +48,16 @@ while True:
             amount_purchase = int(input(f"And how many shares of {purchase} are you purchasing? (1, 2, 3, etc) "))
             stonk.buy_stock(purchase, amount_purchase, bank)
 
+        elif choice == 4: # i am hoping sm that theres no bugs for this part bc i dont wanna have to go bug hunting for 90 mins AGAIN
+            print("- - - - - - - - - - - - - - -")
+            for ticker in stonk.stocks:
+                print(f"{ticker}: {stonk.stocks[ticker]['shares_purchased']} shares purchased")
+            print("\n")
+            print("- - - - - - - - - - - - - - -")
+            selling = input("Which stock would you like to sell? (POM, AVO, etc) ").strip().upper()
+            amount = int(input("And how many shares? "))
+            stonk.sell_stock(selling, amount, bank)
+
         elif choice == 5:
             stonk.tick_prices()
             print("THE PRICES ARE CHANGING")
@@ -55,3 +65,7 @@ while True:
                 print(ticker, f"{stonk.stocks[ticker]['current_cost']:.2f}")
     except Error as e:
         pass
+
+# NOTE NOTE NOTE NOTE
+# THERE IS A BIG BIG BUG 
+# WHEN BUY/SELL STOCKS, MONEY IS DUPLICATED

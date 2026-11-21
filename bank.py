@@ -12,9 +12,9 @@ class Bank():
             "interest" : 0.03, # 3 percent seems pretty ok to me
             "money" : 0.00}, # dollars. INSANE fumble right here
         "Investment" : {
-            "money" : 0.00}, 
+            "money" : 1000.00}, 
         "Checking" : {
-            "money" : 1000.00
+            "money" : 0.00
         }}
         # for now, I think im only going to implement investment
         # ok im actually crying guys, i made a ton of bugs bc the goofy ahh defauly light mode was too hard for my eyes to see
@@ -41,7 +41,6 @@ class Bank():
             if amount_money > self.accounts[account_name]["money"]:
                 print(f"You do not have enough money in {account_name} to withdraw {amount_money} dollars.") # you dont even have enough money lol
                 for account in self.accounts:
-                    print(account)
                     if self.accounts[account]['money'] >= amount_money:
                         print(f"The {account} account has {self.accounts[account]['money']} dollars, which is enough for your transaction of {amount_money}")
                         print("Try withdrawing some money from that account, and depositing it into your INVESTMENT account.")
@@ -67,7 +66,7 @@ class Bank():
     
     def check_balance(self, account_name):
         if account_name in self.accounts:
-            print(f"You have {self.accounts[account_name]['money']} dollars in your {account_name}")
+            return self.accounts[account_name]['money'] # changed this bc i think just returning the num is going to be more helpful later
 
     # func for interest since i want specific events to trigger interest (end of day, major news, new acc waiting period)
     def add_interest(self): # this is not very INTERESTing haha that was so bad

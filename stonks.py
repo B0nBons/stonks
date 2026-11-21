@@ -14,7 +14,8 @@ class StockMarket():
                 "current_cost" : 10.00,
                 "volatility" : 0.35,
                 "shares_purchased" : 0,
-                "historical_prices" : [10.00]
+                "historical_prices" : [10.00],
+                "BASE" : 10.00
             }, # people hate pomegranate revolution or som
             
             "MOW" : {
@@ -22,7 +23,8 @@ class StockMarket():
                 "current_cost" : 15.00,
                 "volatility" : .25,
                 "shares_purchased" : 0,
-                "historical_prices" : [15.00]
+                "historical_prices" : [15.00],
+                "BASE" : 15.00
             }, # insane scandal where the chefs are rats
 
             "BAW" : {
@@ -30,7 +32,8 @@ class StockMarket():
                 "current_cost" : 400.00,
                 "volatility" : .15,
                 "shares_purchased" : 0,
-                "historical_prices" : [400.00] # idk ab scandal
+                "historical_prices" : [400.00],
+                "BASE" : 400.00
             },
 
             "AVO" : {
@@ -38,7 +41,8 @@ class StockMarket():
                 "current_cost" : 5000.00,
                 "volatility" : .20,
                 "shares_purchased" : 0,
-                "historical_prices" : [5000.00]
+                "historical_prices" : [5000.00],
+                "BASE" : 5000.00
             } # super chill, until news event of child labor or som
         }
 
@@ -62,12 +66,20 @@ class StockMarket():
         for tickname in self.stocks: # insane throwback to items.items
             stock = self.stocks[tickname]
             LIMIT = int(stock['volatility'] * 100) # this will be a PERCENT, also insane verity
-            change_boundaries = (random.randint(-LIMIT, LIMIT) / 100) # to get back to percent
+            change_boundaries = (random.randint(-LIMIT + 20, LIMIT - 5) / 100) # to get back to percent
+            # noticed a general downward trend, we usually want stocks to grow and not just go into a downward spiral, so i added a small boost to general cost
+            # ok so that made everythhing go nuts. instead, it gets boost of 20 only to negative
             # comment bc i found this weird to code
             # we first get LIMIT to be an INTEGER percent (30percent) ex
             # then we choose a random integer between (-30, 30) to decide if it goes UP or DOWN, divide by 100 to get the DECIMAL to mult
             current_price = self.stocks[tickname]['historical_prices'][-1] # insane rare negative index referenced
             new_price = current_price * (1 + change_boundaries)
+            if new_price >= self.stocks[tickname]["BASE"] * 2:
+                spike = new_price
+                while new_price >= self.stocks[tickname]["BASE"]:
+                    demote = random.randint(1,100) / 100
+                    new_price *= demote
+
             if new_price <= 0:
                 new_price = 1
                 new_price = f"{new_price:.2f}"
@@ -82,6 +94,7 @@ class StockMarket():
             current_price = self.stocks[tickname]['historical_prices'][-1] # ts hurts my hqnds
             cost = amount * current_price
             cost = f"{cost:.2f}"
+            cost = float(cost)
             if bank.withdraw(cost, "Investment") == True:
                 self.stocks[tickname]["shares_purchased"] += amount
                 print(f"You purchased {amount} {tickname} for {cost}!")

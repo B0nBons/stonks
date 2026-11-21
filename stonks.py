@@ -76,10 +76,12 @@ class StockMarket():
             new_price = current_price * (1 + change_boundaries)
             if new_price >= self.stocks[tickname]["BASE"] * 2:
                 spike = new_price
-                while new_price >= self.stocks[tickname]["BASE"]:
-                    demote = random.randint(1,100) / 100
+                while new_price >= self.stocks[tickname]["BASE"] * 2:
+                    demote = random.randint(50, 100) / 100
                     new_price *= demote
-
+                    if new_price < self.stocks[tickname]["BASE"] * 2:
+                        if spike * .65 >= new_price:
+                            print(f"{self.stocks[tickname]['name']} has experienced a CRASH.")
             if new_price <= 0:
                 new_price = 1
                 new_price = f"{new_price:.2f}"

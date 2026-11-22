@@ -135,8 +135,8 @@ class Casino():
         pass
         # minesweeper
     def horse(self, bank):
-        horses = { # formatted as name : win_chance, multiplier, icon
-        account = "Investment"
+        account = "Investment" # account has LEFt the dict finally (yay everyione cheer)
+        horses = { # formatted as name : win_chance, multiplier, icon 
             "|  Imagine Losing |" : [0.02, 10000, "I"],
             "|   Woe Is You    |" : [0.15, 6, "W"],
             "|   Hard Worker   |" : [0.25, 2, "H"],
@@ -149,19 +149,17 @@ class Casino():
         print("|    HORSE NAME   | WIN CHANCE |  MULT")
         for name in horses:
             print(f"{name}    {horses[name][0]}    | {horses[name][1]}") # for some reason instead of horse, i wrote hormones?? bio IS getting to me ig
-        
         try:
             choice = int(input("Which horse do you think will win?\nImagine Losing (Enter 1)\nWoe Is You (Enter 2)\nHard Worker (Enter 3)\nDragonfruit (Enter 4)\nGold Finder (Enter 5)\nLucky Breaker (Enter 6)\n----> "))
         except Exception as e:
             print("The horses will not wait for you. Goodbye.")
         
-        bet = input("Enter your bet ")
+        bet = int(input("Enter your bet "))
         bank.withdraw(bet, account)
         # so tired but we got this guys
         # i still have to hop on my computer and add in the music as well as the pngs i made (who will be used for the readme story)
         winner = random.random()
         if 0 <= winner <= 0.02:
-            if horses[choice - 1]
             winner = 1
         elif 0.02 < winner <= 0.17:
             winner = 2
@@ -179,14 +177,9 @@ class Casino():
             bank.deposit(payout,account)
             print(f"You got it! You recieved {payout} from your bets!")
         else:
-            print(f"You got it wrong... The winner was {horses[winner - 1]}")
+            print(f"You got it wrong... And you didn't even see the winner.")
 
     def fish(self, bank):
         # il do the nice formatting thing i did for the higher lower later, or maybe never, well see
         print("The Casino has a brand new indoor pool! But We need your help.\nThere are various treasures within the pool.\nFor 3000 dollars, you will get the opportunity to cast your line, and see what grabs it....")
-        # ts so ominious for NO reason at all
-        # im soooo tired but i still need to add music and slap in my goofy art into the readme
-        # speaking of i have to make the readme not be ugly
-        # and i still have to package the game
-        # aaaaaaaaa
-        # ok i think im too larp right now to actually do the fishing game lmao, i suppose we might just do this tomorrow or never
+        # fish is NOT gonna be implemented bc then ppl will think its a rip off of krillion

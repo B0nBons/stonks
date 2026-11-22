@@ -1,10 +1,16 @@
 import random
-import os
 import time
 from bank import Bank
 from stonks import StockMarket
 from casino import Casino
-
+import pygame # THE CE VERSION NOT NORMAL BC NORMAL JUS DOESNT WORK
+# ok so were gonna use pygame (ew) mixer, since stack overflow says thats the way to do bg music
+pygame.mixer.init()
+pygame.mixer.music.load("assets/music/music.wav")
+pygame.mixer.music.play()
+# idk if the music works but im hoping it does please oh please
+# had a little help from stack overflow and ofc we drop the link bc my old teach always said to so here it is: https://stackoverflow.com/questions/44472162/how-can-i-play-audio-playsound-in-the-background-of-a-python-script
+# thank you person from 11 years ago, really saving my ahh
 bank = Bank()
 stonk = StockMarket()
 casino = Casino()
@@ -67,7 +73,7 @@ while True:
                 print(ticker, f"{stonk.stocks[ticker]['current_cost']:.2f}")
 
         elif choice == 6:
-            decision = int(input("Currently, you can access the novice betting area. This comprises of higher/lower (1), and horse betting (2). What do you choose? ")).strip()
+            decision = int(input("Currently, you can access the novice betting area. This comprises of higher/lower (1), and horse betting (2). What do you choose? ").strip()) # I GOTCHU STUPID LIL BUG
             if decision == 1:
                 casino.higher_lower(bank)
             elif decision == 2:
@@ -75,15 +81,12 @@ while True:
             else:
                 print("That's not a 1 or a 2!")
         
-    except Exception as e:
-        print("Bad input! Follow the menu! (Unless you really want to quit. In that case, press ctrl + c)")
-        print(e)
+    #except Exception as e:
+        #print("Bad input! Follow the menu! (Unless you really want to quit. In that case, press ctrl + c)")
+        #print(e)
+        # hashing this out bc i need to know the line the error is on
+    except ValueError:
+        print(ValueError)
 
-# NOTE NOTE NOTE NOTE
-# THERE IS A BIG BIG BUG 
-# WHEN BUY/SELL STOCKS, MONEY IS DUPLICATED
-# ok goodnight vscode, see you in like 6 hours lol
-# good morning vscode, we are so back
-# main goal of todays coding sesh is to figure out all these sstupid banking errors
-# OK THE BUG BUG BUG IS THAT BUYING STOCKS JUST MOVES MONEY FROM INVESTMENT TO CHECKING
-# it does seem everything else works normally
+# goodbye notes
+# all the notes that were wrtten have now been SOLVED!!!! (i think)

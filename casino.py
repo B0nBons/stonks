@@ -136,7 +136,8 @@ class Casino():
         # minesweeper
     def horse(self, bank):
         horses = { # formatted as name : win_chance, multiplier, icon
-            "|  Imagine Losing |" : [0.02, 1000, "I"],
+        account = "Investment"
+            "|  Imagine Losing |" : [0.02, 10000, "I"],
             "|   Woe Is You    |" : [0.15, 6, "W"],
             "|   Hard Worker   |" : [0.25, 2, "H"],
             "|   Dragonfruit   |" : [0.21, 2.5, "D"],
@@ -148,6 +149,37 @@ class Casino():
         print("|    HORSE NAME   | WIN CHANCE |  MULT")
         for name in horses:
             print(f"{name}    {horses[name][0]}    | {horses[name][1]}") # for some reason instead of horse, i wrote hormones?? bio IS getting to me ig
+        
+        try:
+            choice = int(input("Which horse do you think will win?\nImagine Losing (Enter 1)\nWoe Is You (Enter 2)\nHard Worker (Enter 3)\nDragonfruit (Enter 4)\nGold Finder (Enter 5)\nLucky Breaker (Enter 6)\n----> "))
+        except Exception as e:
+            print("The horses will not wait for you. Goodbye.")
+        
+        bet = input("Enter your bet ")
+        bank.withdraw(bet, account)
+        # so tired but we got this guys
+        # i still have to hop on my computer and add in the music as well as the pngs i made (who will be used for the readme story)
+        winner = random.random()
+        if 0 <= winner <= 0.02:
+            if horses[choice - 1]
+            winner = 1
+        elif 0.02 < winner <= 0.17:
+            winner = 2
+        elif 0.17 < winner <= 0.42:
+            winner = 3
+        elif 0.42 < winner <= 0.63:
+            winner = 4
+        elif 0.63 < winner <= 0.92:
+            winner = 5
+        else:
+            winner = 6
+        
+        if choice == winner:
+            payout = bet * horses[winner - 1][1]
+            bank.deposit(payout,account)
+            print(f"You got it! You recieved {payout} from your bets!")
+        else:
+            print(f"You got it wrong... The winner was {horses[winner - 1]}")
 
     def fish(self):
         pass

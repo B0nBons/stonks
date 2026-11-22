@@ -26,6 +26,7 @@ while True:
 |   4    | Sell shares of a stock                     |
 |   5    | Take a break (forward time)                |
 |   6    | Visit the local, RNG probability location  |
+|   7    | Quit, and succumb to the debt              |
 - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 > I want option number... """))
         if choice == 1:
@@ -81,12 +82,16 @@ while True:
             else:
                 print("That's not a 1 or a 2!")
         
+        elif choice == 7:
+            print("To no surprise, you sucuumb to the debt. The Pig is happy.")
+            break
+        
     #except Exception as e:
         #print("Bad input! Follow the menu! (Unless you really want to quit. In that case, press ctrl + c)")
         #print(e)
         # hashing this out bc i need to know the line the error is on
     except ValueError:
-        print(ValueError)
+        print("You cannot break the rules!")
 
 # goodbye notes
 # all the notes that were wrtten have now been SOLVED!!!! (i think)

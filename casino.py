@@ -135,6 +135,15 @@ class Casino():
         pass
         # minesweeper
     def horse(self, bank):
+        print("""
+        _____________________________________
+        |           HOW TO PLAY             |
+        |> Look at winrate of each horse    |
+        |> Place your bet on who will win   |
+        |> Cloes your eyes, take a nap      |
+        |> Pay out alot, or lose all.       |
+        |___________________________________|
+        \n""")
         account = "Investment" # account has LEFt the dict finally (yay everyione cheer)
         horses = { # formatted as name : win_chance, multiplier, icon 
             "|  Imagine Losing |" : [0.02, 10000, "I"],

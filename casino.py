@@ -2,13 +2,14 @@
 # im now going to work on some fun lil NOT gambling games
 # these ARENT gambling, theyre lucked based rng simulators >:D
 import random
+import time
 
 class Casino():
     def __init__(self):
         pass
         # lowkey i think this is just gonna be a big class thats filled with the activities
 
-    def jackblack(self):
+    def jackblack(self): # this is to be implemnted later, perhaps at a later point, it will simply be too much for my brainpower right now
         # dealer draws to 16, stands on 17
         # shows one, hides the other card
         cards = {
@@ -48,7 +49,7 @@ class Casino():
         # this one is easy so im starting with it lol
         account = "Investment" # hardcoding this in because i havent actually added money transfers and stuff to bank yet, which is obv kinda important, but not game breaking
         try:
-            bet = int(input("How much are you willing to bet?"))
+            bet = int(input("How much are you willing to bet? "))
         except ValueError:
             print("That isn't a number!")
             return False
@@ -133,9 +134,20 @@ class Casino():
     def mines(self):
         pass
         # minesweeper
-    def horse(self):
-        pass # 
-        # horse rng game
+    def horse(self, bank):
+        horses = { # formatted as name : win_chance, multiplier, icon
+            "|  Imagine Losing |" : [0.02, 1000, "I"],
+            "|   Woe Is You    |" : [0.15, 6, "W"],
+            "|   Hard Worker   |" : [0.25, 2, "H"],
+            "|   Dragonfruit   |" : [0.21, 2.5, "D"],
+            "|   Gold Finder   |" : [0.29, 1.5, "G"],
+            "|  Lucky Breaker  |" : [0.08, 100, "L"]
+        }
+         
+        print("- - - HORSE RACING - - -")
+        print("|    HORSE NAME   | WIN CHANCE |  MULT")
+        for name in horses:
+            print(f"{name}    {horses[name][0]}    | {horses[name][1]}") # for some reason instead of horse, i wrote hormones?? bio IS getting to me ig
 
     def fish(self):
         pass

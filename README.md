@@ -27,4 +27,4 @@ Once you're in the correct folder as the downloads, all you need to do, is run t
 `chmod +x main`
 And then,
 `./main`
-Have fun playing! It resets when you close it!!!
+Have fun playing! It resets when you close it! See if you can pay off your debt to the pig. If not... You might be pork. ["He will VERY be mad"](/assets/sprites/ANGER.png)

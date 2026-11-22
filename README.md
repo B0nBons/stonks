@@ -22,9 +22,12 @@ First, check that python3 is installed. To do that, press `ctrl + alt + t` to op
 If it is NOT installed, use your systems package manager (for example, apt for ubuntu, dnf for fedora), and install it. I've included the UBUNTU example here:
 `sudo apt update && sudo apt install python3`
 (You may or may not need sudo permission, depending on how your computer is setup. If you are unable to install, try talking with your system administrator. Or google. That's also a choice.)
-At any rate, once Python is installed, navigate to the FOLDER that has the RELEASE downloaded. For simplicity, we will be calling the release **"main"**. Usually, it will be in your downloads folder. If your terminal is not already in downloads (you can check by typing `pwd` which will show what folder you are in), navigate there. You can do this by typing `ls` (essentially, list all files in this folder), and then typing `cd Downloads` **NOTE THAT MOST LINUX DISTROS ARE CASE SENSITIVE!!!**
+At any rate, once Python is installed, navigate to the FOLDER that has the RELEASE downloaded. 
+For simplicity, we will be calling the release **"main"**. Usually, it will be in your downloads folder. 
+If your terminal is not already in downloads (you can check by typing `pwd` which will show what folder you are in), navigate there. 
+You can do this by typing `ls` (essentially, list all files in this folder), and then typing `cd Downloads` **NOTE THAT MOST LINUX DISTROS ARE CASE SENSITIVE!!!**
 Once you're in the correct folder as the downloads, all you need to do, is run the following!
 `chmod +x main`
 And then,
 `./main`
-Have fun playing! It resets when you close it! See if you can pay off your debt to the pig. If not... You might be pork. ["He will VERY be mad"](/assets/sprites/ANGER.png)
+Have fun playing! It resets when you close it! See if you can pay off your debt to the pig. If not... You might be pork. !["He will VERY be mad"](/assets/sprites/ANGER.png)

@@ -3,9 +3,11 @@ import os
 import time
 from bank import Bank
 from stonks import StockMarket
+from casino import Casino
 
 bank = Bank()
 stonk = StockMarket()
+casino = Casino()
 
 while True:
     try: # well my mother is mad at me for no reason so now i feel like crap
@@ -63,8 +65,12 @@ while True:
             print("THE PRICES ARE CHANGING")
             for ticker in stonk.stocks:
                 print(ticker, f"{stonk.stocks[ticker]['current_cost']:.2f}")
-    except Error as e:
-        pass
+
+        elif choice == 6:
+            casino.higher_lower(bank)
+        
+    except Exception as e:
+        print("Bad input! Follow the menu! (Unless you really want to quit. In that case, press ctrl + c)")
 
 # NOTE NOTE NOTE NOTE
 # THERE IS A BIG BIG BUG 

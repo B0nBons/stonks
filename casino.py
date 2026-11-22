@@ -53,6 +53,11 @@ class Casino():
             print("That isn't a number!")
             return False
 
+        if bank.withdraw(bet, account):
+            pass
+        else:
+            return False # not enough money i believe
+
         known = random.randint(1, 100)
         mult = 1.0
         streak = 0
@@ -73,39 +78,53 @@ class Casino():
             print(f"The current number is {known}")
             guess = input("Will the next number be higher (H) or lower (L)? \n[ONLY TYPE H or L, THE RNG RING IS LOOKING FOR ANY WAY TO KICK PEOPLE OUT] ").strip().upper()
             if guess != "H" and guess != 'L':
-                print("Well then! You may leave, with no reward.")
-                break
+                check = input("Do you really want to leave and cash out? (y/n) ").strip().lower()
+                if check == "y":
+                    print("...\nTHEN GET OUTTA HERE, AND BACK TO INVESTING!!!")
+                    if streak == 0:
+                        print("You've had your bet refunded.")
+                        bank.deposit(bet, account)
+                        break
+                    else:
+                        win = bet * mult
+                        bank.deposit(win, account)
+                        print(f"You've cashed out {win} dollars!")
+                        break
+
+                elif check == "n" :
+                    continue
             else:
                 if guess == "H":
                     if mysterious > known:
-                        print(f"You got it! The number was {mysterious}")
-                        known = random.randint(1, 100)
                         streak += 1
                         risk = ((random.randint((mysterious - known), 100)) / 100) + 1
+                        known = random.randint(1, 100) # calc risk before known
                         mult = (streak * 0.85) * risk # this is a very bad risk val for mult calc, but idek how else to do it
+                        print(f"You got it! The number was {mysterious} (multiplier of {mult})")
                         continue
                     elif mysterious < known:
-                        print(f"You guessed wrong... The number was {mysterious}")
+                        print(f"You guessed wrong... The number was {mysterious} (multiplier of {mult} lost)")
                         known = random.randint(1, 100)
                         streak = 0
                         mult = 1
                         print(f"You lost your bet of {bet}")
+                        break # we just kick them out to make logic easy
 
                 elif guess == "L":
                     if mysterious < known:
-                        print(f"You got it! The number was {mysterious}")
-                        knoqn = random.randint(1, 100)
                         streak += 1
                         risk = ((random.randint((known - mysterious), 100)) / 100) + 1
                         mult = streak * risk
+                        known = random.randint(1, 100)
+                        print(f"You got it! The number was {mysterious} (multiplier of {mult})")
                         continue
                     elif mysterious > known:
-                        print(f"You guessed wrong... The number was {mysterious}")
+                        print(f"You guessed wrong... The number was {mysterious} (multiplier of {mult} lost)")
                         known = random.randint(1,100)
                         streak = 0
                         mult = 1
                         print(f"You lost your bet of {bet}")
-                        break
+                        break # kick out
 
 
     def slots(self):

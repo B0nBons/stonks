@@ -6,3 +6,11 @@ __pycache__/
 venv/
 .venv
 /env
+.spec
+.zip
+.toc
+.pyz
+/dist
+dist/
+/build
+build/

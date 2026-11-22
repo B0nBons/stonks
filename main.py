@@ -67,10 +67,17 @@ while True:
                 print(ticker, f"{stonk.stocks[ticker]['current_cost']:.2f}")
 
         elif choice == 6:
-            casino.higher_lower(bank)
+            decision = int(input("Currently, you can access the novice betting area. This comprises of higher/lower (1), and horse betting (2). What do you choose? ")).strip()
+            if decision == 1:
+                casino.higher_lower(bank)
+            elif decision == 2:
+                casino.horse(bank)
+            else:
+                print("That's not a 1 or a 2!")
         
     except Exception as e:
         print("Bad input! Follow the menu! (Unless you really want to quit. In that case, press ctrl + c)")
+        print(e)
 
 # NOTE NOTE NOTE NOTE
 # THERE IS A BIG BIG BUG 

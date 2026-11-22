@@ -181,5 +181,12 @@ class Casino():
         else:
             print(f"You got it wrong... The winner was {horses[winner - 1]}")
 
-    def fish(self):
-        pass
+    def fish(self, bank):
+        # il do the nice formatting thing i did for the higher lower later, or maybe never, well see
+        print("The Casino has a brand new indoor pool! But We need your help.\nThere are various treasures within the pool.\nFor 3000 dollars, you will get the opportunity to cast your line, and see what grabs it....")
+        # ts so ominious for NO reason at all
+        # im soooo tired but i still need to add music and slap in my goofy art into the readme
+        # speaking of i have to make the readme not be ugly
+        # and i still have to package the game
+        # aaaaaaaaa
+        # ok i think im too larp right now to actually do the fishing game lmao, i suppose we might just do this tomorrow or never
